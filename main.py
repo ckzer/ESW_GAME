@@ -16,11 +16,11 @@ def restart():  # 재시작
 
 def main():
     joystick = Joystick()
-    my_image = Image.open('background.png')
+    my_image = Image.open('background.png')  # 배경 출력
     my_draw = ImageDraw.Draw(my_image)
     background = my_image.copy()
     my_draw.ellipse((110, 180, 140, 210), fill=(0, 0, 0))
-    kicker = Kicker((110, 180, 140, 210))
+    kicker = Kicker((110, 180, 140, 210))  # 공 객체 생성
     keeper = Keeper((75, 30), background)
     my_image.paste(keeper.shape, (keeper.position[0], keeper.position[1]))
     flag = 0  # 방향(0은 정면, 1은 왼쪽, 2는 오른쪽)
@@ -30,9 +30,8 @@ def main():
     user_cnt = 0  # 유저 찬 횟수
     ai_goal = 0  # ai 골
     ai_cnt = 0  # ai 골
-    cnt = 0  # 전체 찬 횟수
 
-    def Win():
+    def Win():  # 이긴 화면 출력
         ending = Image.open("win.png").convert("RGBA")
         my_image_end = my_image.copy()
         my_image_end = Image.alpha_composite(my_image_end, ending)
@@ -40,7 +39,7 @@ def main():
         time.sleep(3)
         restart()  # 재시작
 
-    def Lose():
+    def Lose():  # 진 화면 출력
         ending = Image.open("lose.png").convert("RGBA")
         my_image_end = my_image.copy()
         my_image_end = Image.alpha_composite(my_image_end, ending)
